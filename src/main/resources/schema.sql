@@ -1,19 +1,19 @@
 -- Schema for moneygement database
 -- Drop existing tables if they exist
 -- 먼저 참조하는 테이블부터 삭제
-DROP TABLE IF EXISTS quiz_history;
-DROP TABLE IF EXISTS quiz;
-DROP TABLE IF EXISTS coin;
-DROP TABLE IF EXISTS monster_collection;
-DROP TABLE IF EXISTS asset;
-DROP TABLE IF EXISTS theme_invest_return;
-
--- FK로 참조되는 테이블 삭제
-DROP TABLE IF EXISTS theme;
-DROP TABLE IF EXISTS ai_prompt;
-DROP TABLE IF EXISTS monster;
-DROP TABLE IF EXISTS `character`;
-DROP TABLE IF EXISTS user;
+# DROP TABLE IF EXISTS quiz_history;
+# DROP TABLE IF EXISTS quiz;
+# DROP TABLE IF EXISTS coin;
+# DROP TABLE IF EXISTS monster_collection;
+# DROP TABLE IF EXISTS asset;
+# DROP TABLE IF EXISTS theme_invest_return;
+#
+# -- FK로 참조되는 테이블 삭제
+# DROP TABLE IF EXISTS theme;
+# DROP TABLE IF EXISTS ai_prompt;
+# DROP TABLE IF EXISTS monster;
+# DROP TABLE IF EXISTS `character`;
+# DROP TABLE IF EXISTS user;
 
 -- user table
 CREATE TABLE IF NOT EXISTS user

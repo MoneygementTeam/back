@@ -4,8 +4,8 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <!-- 로그 파일 경로 설정 -->
-<!--    <property name="LOG_PATH" value="${LOG_PATH:-C:/Users/bk100/logs}"/> &lt;!&ndash; 로컬 &ndash;&gt;-->
-    <property name="LOG_PATH" value="${LOG_PATH:-/home/ubuntu/service/logs}"/> <!-- 서버 -->
+    <property name="LOG_PATH" value="${LOG_PATH:-C:/Users/bk100/logs}"/> <!-- 로컬 -->
+<!--    <property name="LOG_PATH" value="${LOG_PATH:-/home/ubuntu/service/logs}"/> &lt;!&ndash; 서버 &ndash;&gt;-->
     <property name="LOG_FILE" value="${LOG_PATH}/moneygement-api-server.log"/>
 
     <!-- 콘솔 로그 설정 -->
