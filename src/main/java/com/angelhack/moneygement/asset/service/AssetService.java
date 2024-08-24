@@ -1,5 +1,7 @@
 package com.angelhack.moneygement.asset.service;
 
+import static com.angelhack.moneygement.common.constant.ErrorMessage.*;
+
 import com.angelhack.moneygement.asset.entity.Asset;
 import com.angelhack.moneygement.asset.repository.AssetRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,7 @@ public class AssetService {
 			BigDecimal assetAmount = assetEntityOptional.get().getAssetAmount();
 			return ResponseEntity.ok(assetAmount);
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COMMON_NOT_FOUND_WITH_TARGET.format("자산", userId));
 		}
 	}
 
@@ -34,7 +36,7 @@ public class AssetService {
 			assetRepository.save(asset);
 			return ResponseEntity.ok("Asset amount updated successfully");
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COMMON_NOT_FOUND_WITH_TARGET.format("자산", userId));
 		}
 	}
 
@@ -47,7 +49,7 @@ public class AssetService {
 			assetRepository.save(asset);
 			return ResponseEntity.ok("Asset amount added successfully");
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COMMON_NOT_FOUND_WITH_TARGET.format("자산", userId));
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package com.angelhack.moneygement.asset.service;
 
+import static com.angelhack.moneygement.common.constant.ErrorMessage.*;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,9 +46,9 @@ public class RankingService {
 	}
 
 	public RankingResponse getUserRanking(String userId) {
-		User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found with user id: " + userId));
+		User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND_WITH_TARGET.format("사용자", userId)));
 		Asset asset = assetRepository.findByUserId(user.getUserId())
-			.orElseThrow(() -> new EntityNotFoundException("Asset not found with user id: " + userId));
+			.orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND_WITH_TARGET.format("자산", userId)));
 
 		long rank = assetRepository.countByAssetAmountGreaterThan(asset.getAssetAmount()) + 1;
 
@@ -63,7 +65,7 @@ public class RankingService {
 		if (user.isPresent()) {
 			Long currentCharacterId = user.get().getCurrentCharacterId();
 			log.info(" current = {}", currentCharacterId);
-			String currentMonsterImageUrl = characterRepository.findById(currentCharacterId).orElseThrow(() -> new EntityNotFoundException("해당 캐릭터를 찾을 수 없습니다.")).getCharacterImageUrl();
+			String currentMonsterImageUrl = characterRepository.findById(currentCharacterId).orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND.format("캐릭터"))).getCharacterImageUrl();
 			return RankingResponse.of(
 					rank,
 					currentMonsterImageUrl,
@@ -71,7 +73,7 @@ public class RankingService {
 					userId
 			);
 		} else {
-			throw new EntityNotFoundException("User not found with user id: " + userId);
+			throw new EntityNotFoundException(COMMON_NOT_FOUND.format("사용자") + userId);
 		}
 	}
 }

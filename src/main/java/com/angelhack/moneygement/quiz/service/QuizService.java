@@ -1,5 +1,7 @@
 package com.angelhack.moneygement.quiz.service;
 
+import static com.angelhack.moneygement.common.constant.ErrorMessage.*;
+
 import com.angelhack.moneygement.ai.dto.AiFeedback;
 import com.angelhack.moneygement.ai.dto.AiPromptDto;
 import com.angelhack.moneygement.ai.dto.InvestCaterogy;
@@ -65,7 +67,7 @@ public class QuizService {
 
 		// 선택된 퀴즈의 AiPrompt 정보 가져오기
 		AiPrompt aiPrompt = aiPromptRepository.findById(selectedQuiz.getAiPromptId())
-				.orElseThrow(() -> new EntityNotFoundException("AI Prompt 정보를 찾을 수 없습니다."));
+				.orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND_WITH_TARGET.format("AI 프롬프트", selectedQuiz.getAiPromptId())));
 
 		// DTO로 변환
 		AiPromptDto aiPromptDto = new AiPromptDto(aiPrompt.getAiQuestion(), InvestCaterogyConverter.fromJson(aiPrompt.getAiAnswer()));
@@ -78,14 +80,14 @@ public class QuizService {
 		addQuizHistoryIfDoesNotExist(userId, quizId);
 
 		// 퀴즈의 Answer에서 fluctuationRate 추출
-		Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new EntityNotFoundException("퀴즈를 찾을 수 없습니다."));
-		AiPrompt aiPrompt = aiPromptRepository.findById(quiz.getAiPromptId()).orElseThrow(() -> new EntityNotFoundException("AI Prompt 정보를 찾을 수 없습니다."));
+		Quiz quiz = quizRepository.findById(quizId).orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND_WITH_TARGET.format("퀴즈", quizId)));
+		AiPrompt aiPrompt = aiPromptRepository.findById(quiz.getAiPromptId()).orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND_WITH_TARGET.format("AI 프롬프트", quiz.getAiPromptId())));
 		String selectedCategory = investDecision.subInvestCategory();
 		InvestCaterogy investCaterogy = InvestCaterogyConverter.fromJson(aiPrompt.getAiAnswer());
 		BigDecimal fluctuationRate = getFluctuationRate(selectedCategory, investCaterogy);
 
 		// 자산 업데이트 (투자 금액에 등락률 적용)
-		Asset asset = assetRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("자산 정보를 찾을 수 없습니다."));
+		Asset asset = assetRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND_WITH_TARGET.format("자산", userId)));
 		BigDecimal investAmount = asset.getAssetAmount().multiply(investDecision.investRatio());
 		BigDecimal amountToAdd = investAmount.multiply(fluctuationRate).subtract(investAmount);
 		assetService.addAssetAmount(userId, amountToAdd);
@@ -107,7 +109,7 @@ public class QuizService {
 
 		// 투자 비율 카테고리에 해당하는 AI Feedback Prompt 가져오기
 		AiPrompt selectedAiPrompt = aiPromptRepository.findById(investRatioCategory.getAiPromptId())
-			.orElseThrow(() -> new RuntimeException("AI Prompt not found"));
+			.orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND.format("AI 프롬프트")));
 
 		// AI Prompt의 답변에서 피드백 정보를 가져오기
 		JSONObject aiAnswer = new JSONObject(selectedAiPrompt.getAiAnswer());
