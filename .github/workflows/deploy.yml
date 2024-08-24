@@ -21,14 +21,20 @@ jobs:
           distribution: 'corretto'
 
 
+      - name: Set Yaml
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: ./src/main/resources/application-prod.yml
+        env:
+          spring.datasource.url: ${{ secrets.DB_HOST }}
+          spring.datasource.username: admin
+          spring.datasource.password: ${{ secrets.DB_PASSWORD }}
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew build
-        env:
-          ${DB_HOST} : ${{ secrets.DB_HOST }}
-          ${DB_PASSWORD} : ${{ secrets.DB_PASSWORD }}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -45,9 +51,6 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPO }}:latest
 
   deploy-to-ec2:
-    env:
-      DB_HOST: ${{ secrets.DB_HOST }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     needs: build
     runs-on: ubuntu-latest
 
