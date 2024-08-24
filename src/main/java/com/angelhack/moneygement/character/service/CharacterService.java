@@ -1,5 +1,7 @@
 package com.angelhack.moneygement.character.service;
 
+import static com.angelhack.moneygement.common.constant.ErrorMessage.*;
+
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,7 @@ public class CharacterService {
 	}
 
 	public ResponseEntity<Character> getCharacterDetails(Long characterId) {
-		return ResponseEntity.ok(characterRepository.findById(characterId).orElseThrow(() -> new EntityNotFoundException("해당 캐릭터를 찾을 수 없습니다.")));
+		return ResponseEntity.ok(characterRepository.findById(characterId).orElseThrow(() -> new EntityNotFoundException(COMMON_NOT_FOUND_WITH_TARGET.format("캐릭터", characterId))));
 	}
 
 }
