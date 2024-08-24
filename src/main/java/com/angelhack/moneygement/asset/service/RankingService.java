@@ -61,7 +61,7 @@ public class RankingService {
 		String userId = asset.getUserId();
 		Optional<User> user = userRepository.findByUserId(userId);
 		if (user.isPresent()) {
-			String currentMonsterId = user.get().getCurrentMonsterId();
+			String currentMonsterId = user.get().getCurrentCharacterId();
 			log.info("monsterMap = {}, current = {}", monsterMap, currentMonsterId);
 			String currentMonsterImageUrl = monsterMap.get(currentMonsterId).getMonsterImageUrl();
 			return RankingResponse.of(

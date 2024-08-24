@@ -1,5 +1,5 @@
 -- user table example data
-INSERT IGNORE INTO `user` (`user_id`, `user_pw`, `current_monster_id`, `created_date`, `updated_date`)
+INSERT IGNORE INTO `user` (`user_id`, `user_pw`, `current_character_id`, `created_date`, `updated_date`)
 VALUES ('investorking', 'password123', 'inflation_beast', NOW(), NOW()),
        ('cryptoqueen', 'securePass456', 'deflation_dragon', NOW(), NOW()),
        ('wallstreetwolf', 'tradeMaster789', 'recession_reaper', NOW(), NOW()),
