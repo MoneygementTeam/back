@@ -57,9 +57,9 @@ jobs:
             CONTAINER_ID=$(sudo docker ps -q --filter "publish=80-8080")
 
             if [ ! -z "$CONTAINER_ID" ]; then
-              sudo docker stop $CONTAINER_ID
-              sudo docker rm $CONTAINER_ID
+              sudo docker stop $CONTAINER_ID || true
+              sudo docker rm $CONTAINER_ID || true
             fi
 
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/moneygement-api-server:latest
-            sudo docker run -d --name moneygement-api-server -p 8081:8080 ${{ secrets.DOCKERHUB_USERNAME }}/moneygement-api-server:latest
+            sudo docker run -d --name moneygement-api-server-${{ github.sha }} -p 8081:8080 ${{ secrets.DOCKERHUB_USERNAME }}/moneygement-api-server:latest
