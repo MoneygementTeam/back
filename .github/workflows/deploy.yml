@@ -40,3 +40,26 @@ jobs:
           file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPO }}:latest
+
+  deploy-to-ec2:
+
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            CONTAINER_ID=$(sudo docker ps -q --filter "publish=80-8080")
+
+            if [ ! -z "$CONTAINER_ID" ]; then
+              sudo docker stop $CONTAINER_ID
+              sudo docker rm $CONTAINER_ID
+            fi
+
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/moneygement-api-server:latest
+            sudo docker run -d --name moneygement-api-server -p 80:8080 ${{ secrets.DOCKERHUB_USERNAME }}/moneygement-api-server:latest
