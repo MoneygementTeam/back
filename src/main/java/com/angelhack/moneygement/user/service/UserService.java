@@ -2,6 +2,7 @@ package com.angelhack.moneygement.user.service;
 
 import java.util.Optional;
 
+import com.angelhack.moneygement.asset.service.AssetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 
 	private final UserRepository userRepository;
+	private final AssetService assetService;
 
 	public ResponseEntity<Object> getUserInfo(String userId) {
 		Optional<User> userOptional = userRepository.findById(userId);
@@ -36,6 +38,7 @@ public class UserService {
 			newUser.setUserId(userDto.getUserId());
 			newUser.setUserPw(userDto.getUserPw());
 			userRepository.save(newUser);
+			assetService.createAsset(userDto.getUserId());
 			return ResponseEntity.status(HttpStatus.CREATED).body(newUser.getUserId());
 		}
 	}

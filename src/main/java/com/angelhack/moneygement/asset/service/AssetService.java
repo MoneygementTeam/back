@@ -15,6 +15,7 @@ import java.util.Optional;
 public class AssetService {
 
 	private final AssetRepository assetRepository;
+	private static final BigDecimal INITIAL_AMOUNT = BigDecimal.valueOf(100000);
 
 	public ResponseEntity<Object> getAssetAmount(String userId) {
 		Optional<Asset> assetEntityOptional = assetRepository.findById(userId);
@@ -49,5 +50,23 @@ public class AssetService {
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
 		}
+	}
+
+	public ResponseEntity<Object> createAsset(String userId) {
+		// 사용자가 이미 자산을 가지고 있는지 확인
+		Optional<Asset> existingAsset = assetRepository.findById(userId);
+		if (existingAsset.isPresent()) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Asset already exists for this user");
+		}
+
+		// 새로운 자산 생성
+		Asset newAsset = new Asset();
+		newAsset.setUserId(userId);
+		newAsset.setAssetAmount(INITIAL_AMOUNT);
+
+		// 자산 저장
+		assetRepository.save(newAsset);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body("Asset created successfully");
 	}
 }
