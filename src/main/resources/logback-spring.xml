@@ -1,0 +1,56 @@
+<configuration>
+
+    <!-- 기본 Spring Boot Logback 설정 포함 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- 로그 파일 경로 설정 -->
+<!--    <property name="LOG_PATH" value="${LOG_PATH:-C:/Users/bk100/logs}"/> &lt;!&ndash; 로컬 &ndash;&gt;-->
+    <property name="LOG_PATH" value="${LOG_PATH:-/home/ubuntu/service/logs}"/> <!-- 서버 -->
+    <property name="LOG_FILE" value="${LOG_PATH}/moneygement-api-server.log"/>
+
+    <!-- 콘솔 로그 설정 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 패턴에 색상 및 스타일 추가 -->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %magenta(%class{15}:%M{15})  %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 파일 로그 설정 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 로그 파일 이름 설정 -->
+        <file>${LOG_FILE}</file>
+        <!-- 로그 롤링 정책 설정 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 로그 파일 이름 패턴 -->
+            <fileNamePattern>${LOG_PATH}/moneygement-api-server.%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+            <!-- 로그 파일 보관 기간 -->
+            <!-- <maxHistory>30</maxHistory> -->
+        </rollingPolicy>
+        <!-- 로그 출력 형식 설정 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %class{0}.%M - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- JDBC 및 HikariCP 관련 로깅 추가 -->
+<!--    <logger name="com.zaxxer.hikari" level="DEBUG"/>-->
+<!--    <logger name="org.hibernate" level="DEBUG"/>-->
+<!--    <logger name="org.springframework.jdbc" level="DEBUG"/>-->
+<!--    <logger name="org.springframework.transaction" level="DEBUG"/>-->
+<!--    <logger name="org.springframework.orm.jpa" level="DEBUG"/>-->
+<!--    <logger name="org.springframework.boot.autoconfigure.orm.jpa" level="DEBUG"/>-->
+<!--    <logger name="org.springframework.boot.sql.init" level="DEBUG"/>-->
+
+    <!-- 로거 설정 -->
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="com.angelhack.moneygement" level="INFO"/>
+
+    <!-- 루트 로거 설정 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
