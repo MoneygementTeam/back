@@ -1,15 +1,15 @@
 -- user table example data
 INSERT IGNORE INTO `user` (`user_id`, `user_pw`, `current_character_id`, `created_date`, `updated_date`)
-VALUES ('investorking', 'password123', 'inflation_beast', NOW(), NOW()),
-       ('cryptoqueen', 'securePass456', 'deflation_dragon', NOW(), NOW()),
-       ('wallstreetwolf', 'tradeMaster789', 'recession_reaper', NOW(), NOW()),
-       ('stockguru', 'investorPro321', 'liquidity_trap', NOW(), NOW()),
-       ('economyexpert', 'financeWizard654', 'stagflation_serpent', NOW(), NOW()),
-       ('marketmaven', 'growthHacker987', 'credit_crunch_creeper', NOW(), NOW()),
-       ('bondboss', 'fixedIncome222', 'housing_bubble_hound', NOW(), NOW()),
-       ('commoditieschamp', 'goldSilver111', 'currency_crisis_cyclops', NOW(), NOW()),
-       ('derivativesduke', 'optionsFutures444', 'trade_war_titan', NOW(), NOW()),
-       ('forexphenom', 'currencyPro555', 'debt_dragon', NOW(), NOW());
+VALUES ('investorking', 'password123', 1, NOW(), NOW()),
+       ('cryptoqueen', 'securePass456', 1, NOW(), NOW()),
+       ('wallstreetwolf', 'tradeMaster789', 1, NOW(), NOW()),
+       ('stockguru', 'investorPro321', 1, NOW(), NOW()),
+       ('economyexpert', 'financeWizard654', 1, NOW(), NOW()),
+       ('marketmaven', 'growthHacker987', 1, NOW(), NOW()),
+       ('bondboss', 'fixedIncome222', 1, NOW(), NOW()),
+       ('commoditieschamp', 'goldSilver111', 1, NOW(), NOW()),
+       ('derivativesduke', 'optionsFutures444', 1, NOW(), NOW()),
+       ('forexphenom', 'currencyPro555', 1, NOW(), NOW());
 
 -- asset table example data
 INSERT IGNORE INTO `asset` (`user_id`, `asset_amount`, `created_date`, `updated_date`)
@@ -24,38 +24,34 @@ VALUES ('investorking', 1500000, NOW(), NOW()),
        ('derivativesduke', 1800000, NOW(), NOW()),
        ('forexphenom', 2100000, NOW(), NOW());
 
+INSERT INTO `character` (character_name, character_image_url, character_model_url, created_date, updated_date)
+VALUES ('miffy',
+        'https://static.wikia.nocookie.net/goanimate-v2/images/c/cc/Miffy.png/revision/latest?cb=20180708070526',
+        'https://static.wikia.nocookie.net/goanimate-v2/images/c/cc/Miffy.png/revision/latest?cb=20180708070526', NOW(),
+        NOW());
+
 -- monster table example data
-INSERT IGNORE INTO `monster` (`monster_id`, `monster_name`, `monster_desc`, `monster_image_url`, `monster_model_url`,
+INSERT IGNORE INTO `monster` (`monster_id`, `monster_name`, `monster_desc`, `monster_model_url`,
                        `created_date`, `updated_date`)
 VALUES ('inflation_beast', '인플레이션 괴물', '구매력을 파괴하는 인플레이션의 파괴적 힘을 상징하는 괴물.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('deflation_dragon', '디플레이션 용', '경제 둔화와 가격 하락을 상징하는 강력한 용.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('recession_reaper', '불황의 사신', '경제 하락을 상징하는 존재로, 대규모 실업과 기업 파산을 초래함.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('liquidity_trap', '유동성 함정', '통화 정책이 효과를 발휘하지 못하는 경제 상태를 가두는 괴물.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('stagflation_serpent', '스태그플레이션 뱀', '저성장, 높은 실업률, 상승하는 물가를 초래하는 뱀.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('credit_crunch_creeper', '신용 경색 요정', '신용 시장을 얼어붙게 하여 경제를 마비시키는 요정.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('housing_bubble_hound', '부동산 거품 사냥개', '지속 가능한 수준을 초과하여 부동산 가격을 상승시키고 결국 붕괴를 초래하는 사냥개.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('currency_crisis_cyclops', '통화 위기 사이클롭스', '국가 통화를 불안정하게 만들어 금융 공황을 일으키는 외눈박이 거인.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('trade_war_titan', '무역전쟁 거인', '관세와 무역 장벽을 증가시켜 글로벌 무역에 해를 끼치는 거인.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW()),
        ('debt_dragon', '채무 용', '과도한 채무의 위험을 나타내며 금융 안정성을 위협하는 용.',
-        'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png',
         'https://w7.pngwing.com/pngs/237/587/png-transparent-cute-pikachu-thumbnail.png', NOW(), NOW());
 
 -- theme table example data
