@@ -37,4 +37,17 @@ public class AssetService {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
 		}
 	}
+
+	public ResponseEntity<Object> addAssetAmount(String userId, BigDecimal amountToAdd) {
+		Optional<Asset> assetEntityOptional = assetRepository.findById(userId);
+		if (assetEntityOptional.isPresent()) {
+			Asset asset = assetEntityOptional.get();
+			BigDecimal updatedAmount = asset.getAssetAmount().add(amountToAdd);
+			asset.setAssetAmount(updatedAmount);
+			assetRepository.save(asset);
+			return ResponseEntity.ok("Asset amount added successfully");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+		}
+	}
 }

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InverstCategoryConverter {
+public class InvestCaterogyConverter {
 
     private static final String MAJOR_INVEST_CATEGORY = "majorInvestCategory";
     private static final String SUB_INVEST_CATEGORY = "subInvestCategory";
@@ -41,7 +41,7 @@ public class InverstCategoryConverter {
                     JSONObject details = subCategoryJson.getJSONObject(subCategoryName);
                     SubInvestCategory subInvestCategory = new SubInvestCategory(
                             subCategoryName,
-                            details.getDouble(FLUCTUATION_RATE),
+                            details.getBigDecimal(FLUCTUATION_RATE),
                             details.getString(DESCRIPTION)
                     );
                     subCategoryList.add(subInvestCategory);

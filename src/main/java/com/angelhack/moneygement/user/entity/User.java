@@ -1,16 +1,10 @@
 package com.angelhack.moneygement.user.entity;
 
-import java.util.List;
-
 import com.angelhack.moneygement.common.entity.BaseEntity;
-import com.angelhack.moneygement.monster.entity.Monster;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
