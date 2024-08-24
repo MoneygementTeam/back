@@ -1,4 +1,4 @@
-package com.angelhack.moneygement.quiz.quiz.entity;
+package com.angelhack.moneygement.quiz.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

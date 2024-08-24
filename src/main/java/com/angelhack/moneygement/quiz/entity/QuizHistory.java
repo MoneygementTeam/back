@@ -1,4 +1,4 @@
-package com.angelhack.moneygement.quiz.quiz.entity;
+package com.angelhack.moneygement.quiz.entity;
 
 import com.angelhack.moneygement.common.entity.BaseEntity;
 import jakarta.persistence.*;
