@@ -34,5 +34,32 @@ spring:
       org.hibernate.engine.query.spi: DEBUG
 server:
   port: 8080
+  protocol: https
+  host: localhost
 
+url:
+  open-ai: https://api.openai.com/v1/completions
+  upbeat:
+    get-market: https://api.upbit.com/v1/market/all?isDetails=false
 
+ai:
+  chat-client:
+    system-text:
+      funny: 시대 상황의 실제 자산 가격을 분석해서 이모지 많이 섞어서 우스꽝스럽게 대답해
+      analytical-feedback: 시대 상황의 실제 자산 등락률을 알려주고, 투자 결과와 습관에 대해 재미있게 피드백해
+    answer-format:
+      quiz: '{"majorInvestCategory": ["a", "b", "c"], "subInvestCategory": {"a": [{"a-a": {"fluctuationRate": 0.0, "description": ""}, {"a-b": {"fluctuationRate": 0, "description": ""}, {"a-c": {"fluctuationRate": 0, "description": ""}]}, {"b": [{"b-a": {"fluctuationRate": 0, "description": ""}, {"b-b": {"fluctuationRate": 0, "description": ""}, {"b-c": {"fluctuationRate": 0, "description": ""}]}, {"c": [{"c-a": {"fluctuationRate": 0, "description": ""}, {"c-b": {"fluctuationRate": 0, "description": ""}, {"c-c": {"fluctuationRate": 0, "description": ""}]}}'
+      feedback: '{"assetFeedback": "", "investFeedback": ""}'
+
+springdoc:
+  packages-to-scan: com.angelhack.moneygement
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path : /swagger
+    protocol: https
+
+datasource:
+  p6spy:
+    enable-logging:
+      false
