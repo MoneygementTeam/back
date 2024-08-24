@@ -1,6 +1,7 @@
 package com.angelhack.moneygement.quiz.service;
 
 import com.angelhack.moneygement.ai.dto.AiFeedback;
+import com.angelhack.moneygement.ai.dto.AiPromptDto;
 import com.angelhack.moneygement.ai.dto.InvestCaterogy;
 import com.angelhack.moneygement.ai.dto.InvestCaterogy.SubInvestCategory;
 import com.angelhack.moneygement.ai.dto.InvestDecision;
@@ -52,7 +53,7 @@ public class QuizService {
 			.filter(quiz -> !completedQuizIds.contains(quiz.getQuizId()))
 			.collect(Collectors.toList());
 
-		// 남은 퀴즈 중 랜덤으로 선정
+		// 남은  퀴즈 중 랜덤으로 선정
 		Quiz selectedQuiz;
 		if (!availableQuizzes.isEmpty()) {
 			Random random = new Random();
@@ -61,7 +62,15 @@ public class QuizService {
 			Random random = new Random();
 			selectedQuiz = allQuizzesForTheme.get(random.nextInt(allQuizzesForTheme.size()));
 		}
-		return ResponseEntity.ok(selectedQuiz);
+
+		// 선택된 퀴즈의 AiPrompt 정보 가져오기
+		AiPrompt aiPrompt = aiPromptRepository.findById(selectedQuiz.getAiPromptId())
+				.orElseThrow(() -> new EntityNotFoundException("AI Prompt 정보를 찾을 수 없습니다."));
+
+		// DTO로 변환
+		AiPromptDto aiPromptDto = new AiPromptDto(aiPrompt.getAiQuestion(), InvestCaterogyConverter.fromJson(aiPrompt.getAiAnswer()));
+
+		return ResponseEntity.ok(aiPromptDto);
 	}
 
 	public ResponseEntity<Object> submitQuizAnswer(String userId, String quizId, InvestDecision investDecision) {
