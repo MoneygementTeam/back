@@ -1,9 +1,16 @@
 package com.angelhack.moneygement.user.entity;
 
+import java.util.List;
+
 import com.angelhack.moneygement.common.entity.BaseEntity;
+import com.angelhack.moneygement.monster.entity.Monster;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +32,12 @@ public class User extends BaseEntity {
 
     @Column(name = "current_monster_id", length = 40)
     private String currentMonsterId;
+
+    @OneToMany
+    @JoinTable(
+        name = "monster_collection",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "monster_id")
+    )
+    private List<Monster> monsterCollection;
 }
