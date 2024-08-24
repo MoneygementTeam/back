@@ -24,6 +24,6 @@ public class User extends BaseEntity {
     @Column(name = "user_pw", length = 40)
     private String userPw;
 
-    @Column(name = "current_character_id", length = 40)
-    private String currentCharacterId;
+    @Column(name = "current_character_id")
+    private Long currentCharacterId;
 }

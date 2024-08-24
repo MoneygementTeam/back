@@ -26,9 +26,6 @@ public class Monster extends BaseEntity {
     @Column(name = "monster_desc", length = 2000)
     private String monsterDesc;
 
-    @Column(name = "monster_image_url", length = 2083)
-    private String monsterImageUrl;
-
     @Column(name = "monster_model_url", length = 2083)
     private String monsterModelUrl;
 }

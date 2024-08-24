@@ -1,4 +1,18 @@
 -- Schema for moneygement database
+-- Drop existing tables if they exist
+-- 먼저 참조하는 테이블부터 삭제
+DROP TABLE IF EXISTS quiz_history;
+DROP TABLE IF EXISTS quiz;
+DROP TABLE IF EXISTS coin;
+DROP TABLE IF EXISTS monster_collection;
+DROP TABLE IF EXISTS asset;
+
+-- FK로 참조되는 테이블 삭제
+DROP TABLE IF EXISTS theme;
+DROP TABLE IF EXISTS ai_prompt;
+DROP TABLE IF EXISTS monster;
+DROP TABLE IF EXISTS `character`;
+DROP TABLE IF EXISTS user;
 
 -- user table
 CREATE TABLE IF NOT EXISTS user (
@@ -30,6 +44,17 @@ CREATE TABLE IF NOT EXISTS monster (
                          created_date DATETIME DEFAULT NOW(),
                          updated_date DATETIME DEFAULT NOW() ON UPDATE NOW(),
                          PRIMARY KEY (monster_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- character table
+CREATE TABLE IF NOT EXISTS `character` (
+               character_id BIGINT AUTO_INCREMENT NOT NULL,
+               character_name VARCHAR(40) DEFAULT NULL,
+               character_image_url VARCHAR(2083) DEFAULT NULL,
+               character_model_url VARCHAR(2083) DEFAULT NULL,
+               created_date DATETIME DEFAULT NOW(),
+               updated_date DATETIME DEFAULT NOW() ON UPDATE NOW(),
+               PRIMARY KEY (character_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- monster_collection table

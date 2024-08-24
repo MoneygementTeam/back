@@ -1,21 +1,21 @@
 package com.angelhack.moneygement.asset.service;
 
-import com.angelhack.moneygement.asset.dto.RankingResponse;
-import com.angelhack.moneygement.asset.entity.Asset;
-import com.angelhack.moneygement.asset.repository.AssetRepository;
-import com.angelhack.moneygement.monster.repository.MonsterCollectionRepository;
-import com.angelhack.moneygement.user.entity.User;
-import com.angelhack.moneygement.user.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.angelhack.moneygement.monster.service.MonsterService.monsterMap;
+import org.springframework.stereotype.Service;
+
+import com.angelhack.moneygement.asset.dto.RankingResponse;
+import com.angelhack.moneygement.asset.entity.Asset;
+import com.angelhack.moneygement.asset.repository.AssetRepository;
+import com.angelhack.moneygement.character.repository.CharacterRepository;
+import com.angelhack.moneygement.user.entity.User;
+import com.angelhack.moneygement.user.repository.UserRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -26,7 +26,7 @@ public class RankingService {
 	
 	private final UserRepository userRepository;
 
-	private final MonsterCollectionRepository monsterCollectionRepository;
+	private final CharacterRepository characterRepository;
 
 	public List<RankingResponse> getTopRanking(Integer limit) {
 		List<RankingResponse> rankingResponses = assetRepository.findAllOrderByAssetAmountDesc()
@@ -61,9 +61,9 @@ public class RankingService {
 		String userId = asset.getUserId();
 		Optional<User> user = userRepository.findByUserId(userId);
 		if (user.isPresent()) {
-			String currentMonsterId = user.get().getCurrentCharacterId();
-			log.info("monsterMap = {}, current = {}", monsterMap, currentMonsterId);
-			String currentMonsterImageUrl = monsterMap.get(currentMonsterId).getMonsterImageUrl();
+			Long currentCharacterId = user.get().getCurrentCharacterId();
+			log.info(" current = {}", currentCharacterId);
+			String currentMonsterImageUrl = characterRepository.findById(currentCharacterId).orElseThrow(() -> new EntityNotFoundException("해당 캐릭터를 찾을 수 없습니다.")).getCharacterImageUrl();
 			return RankingResponse.of(
 					rank,
 					currentMonsterImageUrl,
