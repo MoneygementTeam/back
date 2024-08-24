@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS theme
   COLLATE = utf8mb4_0900_ai_ci;
 
 
-CREATE TABLE theme_invest_return
+CREATE TABLE  IF NOT EXISTS theme_invest_return
 (
     theme_id           VARCHAR(40) PRIMARY KEY,
     commodity_return   VARCHAR(10),
