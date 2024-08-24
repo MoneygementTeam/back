@@ -45,7 +45,9 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPO }}:latest
 
   deploy-to-ec2:
-
+    env:
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     needs: build
     runs-on: ubuntu-latest
 
