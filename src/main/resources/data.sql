@@ -96,6 +96,18 @@ VALUES ('great_depression', '1929 세계 경제 대공황',
         '2024년 아시아 지역에서 발생한 대규모 증시 폭락은 글로벌 경제에 큰 충격을 주었습니다. 이 사건은 지역 경제의 불안정성과 글로벌 시장의 상호 의존성을 잘 보여주는 사례로, 세계 경제의 복잡성을 다시 한 번 부각시켰습니다. 급격한 시장 변동성 속에서 장기적인 투자 전략과 분산 투자로 리스크를 관리하는 것이 중요합니다.',
         NOW(), NOW());
 
+
+INSERT INTO theme_invest_return (theme_id, commodity_return, coin_return, stock_return, real_estate_return)
+VALUES ('covid19_pandemic', '-30%', '200%', '15%', '5%'),
+       ('subprime_crisis', '-20%', '0%', '-40%', '-30%'),
+       ('lost_decade_japan', '5%', '0%', '-50%', '-60%'),
+       ('world_war_ii', '300%', '0%', '-80%', '-90%'),
+       ('oil_shock', '400%', '0%', '-30%', '-10%'),
+       ('great_depression', '150%', '0%', '-80%', '-70%'),  -- 1929 대공황: 원자재 가격 상승, 주식 및 부동산 가치 급락.
+       ('eurozone', '20%', '0%', '30%', '25%'),              -- 1999 유로존: 유로화 도입으로 안정적인 경제 성장, 주식 및 부동산 가치 상승.
+       ('brexit', '-10%', '-20%', '-15%', '-10%'),           -- 2016 브렉시트: 정치적 불확실성으로 인한 시장 변동성, 암호화폐 투자 증가.
+       ('crypto_revolution', '10%', '1000%', '5%', '2%'),    -- 2017 암호화폐 혁명: 암호화폐 시장의 폭발적 성장, 전통적 자산의 상대적 하락.
+       ('asia_market_crash', '-30%', '-40%', '-35%', '-25%');-- 2024 아시아 증시 대폭락: 시장 불안정성으로 모든 자산의 가치 하락.
 -- AI_PROMPT table example data
 INSERT IGNORE INTO `ai_prompt` (`ai_prompt_id`, `ai_prompt_class`, `ai_question`, `ai_answer`, `created_date`,
                                 `updated_date`)

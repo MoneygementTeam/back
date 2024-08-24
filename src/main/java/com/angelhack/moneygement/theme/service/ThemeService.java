@@ -1,25 +1,47 @@
 package com.angelhack.moneygement.theme.service;
 
+import com.angelhack.moneygement.theme.controller.dto.ThemeResponse;
 import com.angelhack.moneygement.theme.entity.Theme;
+import com.angelhack.moneygement.theme.entity.ThemeInvestReturn;
+import com.angelhack.moneygement.theme.repository.ThemeInvestReturnRepository;
 import com.angelhack.moneygement.theme.repository.ThemeRepository;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ThemeService {
 
 	private final ThemeRepository themeRepository;
+	private final ThemeInvestReturnRepository themeInvestReturnRepository;
 
 	public ResponseEntity<Object> getThemeList() {
 		List<Theme> themes = themeRepository.findAll();
+
 		if (!themes.isEmpty()) {
-			return ResponseEntity.ok(themes);
+			List<ThemeResponse> themeDTOs = themes.stream().map(theme -> {
+				ThemeInvestReturn investReturn = themeInvestReturnRepository.findById(theme.getThemeId()).orElse(null);
+
+				return new ThemeResponse(
+					theme.getThemeId(),
+					theme.getThemeName(),
+					theme.getThemeDesc(),
+					investReturn != null ? investReturn.getCommodityReturn() : null,
+					investReturn != null ? investReturn.getCoinReturn() : null,
+					investReturn != null ? investReturn.getStockReturn() : null,
+					investReturn != null ? investReturn.getRealEstateReturn() : null
+				);
+			}).collect(Collectors.toList());
+
+			return ResponseEntity.ok(themeDTOs);
 		} else {
 			return ResponseEntity.noContent().build();
 		}
