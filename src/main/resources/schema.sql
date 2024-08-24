@@ -4,7 +4,7 @@
 CREATE TABLE IF NOT EXISTS user (
                         user_id VARCHAR(40) NOT NULL,
                         user_pw VARCHAR(40) DEFAULT NULL,
-                        current_monster_id VARCHAR(40) DEFAULT NULL,
+                        current_character_id VARCHAR(40) DEFAULT NULL,
                         created_date DATETIME DEFAULT NOW(),
                         updated_date DATETIME DEFAULT NOW() ON UPDATE NOW(),
                         PRIMARY KEY (user_id)

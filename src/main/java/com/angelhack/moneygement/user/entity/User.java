@@ -30,14 +30,6 @@ public class User extends BaseEntity {
     @Column(name = "user_pw", length = 40)
     private String userPw;
 
-    @Column(name = "current_monster_id", length = 40)
-    private String currentMonsterId;
-
-    @OneToMany
-    @JoinTable(
-        name = "monster_collection",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "monster_id")
-    )
-    private List<Monster> monsterCollection;
+    @Column(name = "current_character_id", length = 40)
+    private String currentCharacterId;
 }
