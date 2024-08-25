@@ -1,5 +1,7 @@
 package com.angelhack.moneygement.user.service;
 
+import static com.angelhack.moneygement.common.constant.ErrorMessage.*;
+
 import java.util.Optional;
 
 import com.angelhack.moneygement.asset.service.AssetService;
@@ -25,7 +27,7 @@ public class UserService {
 		if (userOptional.isPresent()) {
 			return ResponseEntity.ok(userOptional.get());
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(COMMON_NOT_FOUND.format("사용자"));
 		}
 	}
 
