@@ -97,7 +97,7 @@ VALUES ('great_depression', '1929 세계 경제 대공황',
         NOW(), NOW());
 
 
-INSERT INTO theme_invest_return (theme_id, commodity_return, coin_return, stock_return, real_estate_return)
+INSERT IGNORE INTO theme_invest_return (theme_id, commodity_return, coin_return, stock_return, real_estate_return)
 VALUES ('covid19_pandemic', '-30%', '200%', '15%', '5%'),
        ('subprime_crisis', '-20%', '0%', '-40%', '-30%'),
        ('lost_decade_japan', '5%', '0%', '-50%', '-60%'),
