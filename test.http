@@ -15,3 +15,6 @@ Content-Type: application/json
 
 ### CARD 조회
 GET localhost:8080/api/cards?userId=moneygement
+
+### Theme 조회
+GET localhost:8080/api/theme/
