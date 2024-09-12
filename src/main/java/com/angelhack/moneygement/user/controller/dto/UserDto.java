@@ -1,4 +1,4 @@
-package com.angelhack.moneygement.user.dto;
+package com.angelhack.moneygement.user.controller.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
