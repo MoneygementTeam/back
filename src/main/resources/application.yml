@@ -1,7 +1,7 @@
 spring:
   profiles:
     active:
-      - local
+      - dev # 로컬 테스트 시 local로 수정
       - external
   jpa:
     show-sql: true
