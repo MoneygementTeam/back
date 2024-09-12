@@ -30,37 +30,34 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // Spring Boot JPA Dependencies
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    // MySQL Dependencies
-    runtimeOnly 'com.mysql:mysql-connector-j'
-
-    // Lombok Dependency (Optional, for reducing boilerplate code)
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    // Spring Boot Test Dependency
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    // Apache Commons Lang3
-    implementation 'org.apache.commons:commons-lang3'
-
-    // HTTP Client
-    implementation 'org.apache.httpcomponents.client5:httpclient5'
-
-    // JSON Processing with Jackson
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
-
     // Spring AI
     implementation platform('org.springframework.ai:spring-ai-bom:1.0.0-M1')
     implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
 
-    // Swagger API Docs
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+    // Spring Boot JPA Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // MySQL Dependencies
+    runtimeOnly 'com.mysql:mysql-connector-j'
 
     // P6Spy
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.1'
+
+    // Lombok Dependency
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Swagger API Docs
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+    // Apache Commons Lang3
+    implementation 'org.apache.commons:commons-lang3'
+
+    // Guava
+    implementation 'com.google.guava:guava:33.3.0-jre'
 }
 
 tasks.named('test') {

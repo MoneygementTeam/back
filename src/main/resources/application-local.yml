@@ -1,17 +1,17 @@
 spring:
   config:
     activate:
-      on-profile: dev
+      on-profile: local
   datasource:
-    url: ${DB_HOST}
-    username: admin
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/moneygement
+    username: root
+    password: root123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-      
+      ddl-auto: create
+
 datasource:
   p6spy:
     enable-logging:
-      false
+      true

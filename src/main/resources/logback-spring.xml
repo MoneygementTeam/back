@@ -13,7 +13,7 @@
         <encoder>
             <!-- 패턴에 색상 및 스타일 추가 -->
             <pattern>
-                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %magenta(%class{15}:%M{15})  %msg%n
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{30}) - %magenta(%class{15}:%M{15})  %msg%n
             </pattern>
         </encoder>
     </appender>

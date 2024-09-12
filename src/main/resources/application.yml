@@ -1,21 +1,15 @@
 spring:
   profiles:
-    active: prod
+    active:
+      - local
+      - external
   jpa:
-    hibernate:
-      ddl-auto: update
     show-sql: true
     format_sql: true
     use_sql_comments: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:schema.sql
-      data-locations: classpath:data.sql
-      continue-on-error: false
   ai:
     openai:
       api-key: testKey
@@ -58,8 +52,3 @@ springdoc:
   swagger-ui:
     path : /swagger
     protocol: https
-
-datasource:
-  p6spy:
-    enable-logging:
-      false

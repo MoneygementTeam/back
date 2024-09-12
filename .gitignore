@@ -9,6 +9,7 @@
 /dataSources/
 /dataSources.local.xml
 .idea/
+resources/application-external.yml
 
 ### Eclipse ###
 .metadata
