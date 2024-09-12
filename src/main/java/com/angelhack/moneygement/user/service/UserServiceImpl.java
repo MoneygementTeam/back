@@ -2,7 +2,7 @@ package com.angelhack.moneygement.user.service;
 
 import org.springframework.stereotype.Service;
 
-import com.angelhack.moneygement.user.repository.UserRepository;
+import com.angelhack.moneygement.user.persistence.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

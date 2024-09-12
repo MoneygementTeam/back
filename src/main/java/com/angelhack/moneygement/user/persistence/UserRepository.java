@@ -1,4 +1,4 @@
-package com.angelhack.moneygement.user.repository;
+package com.angelhack.moneygement.user.persistence;
 
 import com.angelhack.moneygement.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;

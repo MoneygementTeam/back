@@ -58,6 +58,10 @@ dependencies {
 
     // Guava
     implementation 'com.google.guava:guava:33.3.0-jre'
+
+    // Mapstruct
+    implementation 'org.mapstruct:mapstruct:1.6.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
 }
 
 tasks.named('test') {

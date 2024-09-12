@@ -1,0 +1,17 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+### CARD 저장
+
+POST localhost:8080/api/cards
+Content-Type: application/json
+
+{
+  "userId": "moneygement",
+  "cardUrl": "https://angelhack.s3.ap-northeast-2.amazonaws.com/monster1.png",
+  "nftId": "nft001"
+}
+
+### CARD 조회
+GET localhost:8080/api/cards?userId=moneygement

@@ -92,6 +92,11 @@ public class User extends BaseEntity {
         this.currentCharacterId = characterId;
     }
 
+    /**
+     * 토큰 값 변경하는 메서드
+     * @param accessToken
+     * @param refreshToken
+     */
     public void update(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;

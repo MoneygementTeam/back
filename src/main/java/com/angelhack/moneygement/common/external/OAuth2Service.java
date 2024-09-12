@@ -11,7 +11,7 @@ import com.angelhack.moneygement.common.external.dto.KakaoUserInfoResponse;
 import com.angelhack.moneygement.common.external.dto.OauthUserInfoResponse;
 import com.angelhack.moneygement.user.domain.LoginProvider;
 import com.angelhack.moneygement.user.domain.User;
-import com.angelhack.moneygement.user.repository.UserRepository;
+import com.angelhack.moneygement.user.persistence.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
