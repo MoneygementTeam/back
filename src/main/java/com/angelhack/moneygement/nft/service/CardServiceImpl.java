@@ -25,6 +25,7 @@ public class CardServiceImpl implements CardService {
 	}
 
 	@Override
+ 	@Transactional(readOnly = true)
 	public List<Card> findAll(String userId) {
 		return cardRepository.findByUserId(userId);
 	}
